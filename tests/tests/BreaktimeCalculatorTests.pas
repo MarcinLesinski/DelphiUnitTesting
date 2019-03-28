@@ -18,20 +18,19 @@ type
 implementation
 
 uses
-    TimeServiceImp,
+    TimeServiceStub,
     System.SysUtils;
 
 procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime;
 var
     actual, expected: Boolean;
-    timeService: TTimeService;
-    breaktimeCalculator: TBreaktimeCalculator;
+    timeService: TTimeServiceStub;
+    BreaktimeCalculator: TBreaktimeCalculator;
 begin
-    timeService := TTimeService.Create;
-    breaktimeCalculator := TBreaktimeCalculator.Create(timeService);
-    actual := breaktimeCalculator.IsBreak();
-
-    //    expected := ??
+    timeService := TTimeServiceStub.Create(StrToTime('05:45:23'));
+    BreaktimeCalculator := TBreaktimeCalculator.Create(timeService);
+    actual := BreaktimeCalculator.IsBreak();
+    expected := true;
     Assert.AreEqual(expected, actual);
 end;
 

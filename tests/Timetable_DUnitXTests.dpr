@@ -13,7 +13,9 @@ uses
   DUnitX.TestFramework,
   BreaktimeCalculatorTests in 'tests\BreaktimeCalculatorTests.pas',
   TimeServiceImp in '..\src\src\TimeServiceImp.pas',
-  BreaktimeCalculator in '..\src\src\BreaktimeCalculator.pas';
+  BreaktimeCalculator in '..\src\src\BreaktimeCalculator.pas',
+  TimeServiceStub in 'tests\TimeServiceStub.pas',
+  TimeService in '..\src\src\TimeService.pas';
 
 var
   runner : ITestRunner;
