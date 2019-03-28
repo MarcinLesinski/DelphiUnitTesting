@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EA84D456-834E-467B-84FA-7B91F850A759}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="src\Timetable.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="tests\Timetable_DUnitXTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Timetable">
+        <MSBuild Projects="src\Timetable.dproj"/>
+    </Target>
+    <Target Name="Timetable:Clean">
+        <MSBuild Projects="src\Timetable.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Timetable:Make">
+        <MSBuild Projects="src\Timetable.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Timetable_DUnitXTests">
+        <MSBuild Projects="tests\Timetable_DUnitXTests.dproj"/>
+    </Target>
+    <Target Name="Timetable_DUnitXTests:Clean">
+        <MSBuild Projects="tests\Timetable_DUnitXTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Timetable_DUnitXTests:Make">
+        <MSBuild Projects="tests\Timetable_DUnitXTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Timetable;Timetable_DUnitXTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Timetable:Clean;Timetable_DUnitXTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Timetable:Make;Timetable_DUnitXTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
