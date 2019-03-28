@@ -9,9 +9,11 @@ uses
   TimeService in 'src\TimeService.pas';
 
 var
+    timeService: TTimeService;
     breaksCalculator: TBreaktimeCalculator;
 begin
-    breaksCalculator := TBreaktimeCalculator.Create;
+    timeService := TTimeService.Create;
+    breaksCalculator := TBreaktimeCalculator.Create(timeService);
     if breaksCalculator.IsBreak then
         Writeln('Przerwa')
     else

@@ -10,8 +10,7 @@ type
     private
         _timeService: TTimeService;
     public
-        constructor Create();
-        destructor Destroy; override;
+        constructor Create(timeService: TTimeService);
 
         function IsBreak: Boolean;
     end;
@@ -24,15 +23,9 @@ uses
 
 { TBreaksCalculator }
 
-constructor TBreaktimeCalculator.Create;
+constructor TBreaktimeCalculator.Create(timeService: TTimeService);
 begin
-    _timeService := TTimeService.Create;
-end;
-
-destructor TBreaktimeCalculator.Destroy;
-begin
-    _timeService.DisposeOf;
-    inherited;
+    _timeService := timeService;
 end;
 
 function TBreaktimeCalculator.IsBreak: Boolean;

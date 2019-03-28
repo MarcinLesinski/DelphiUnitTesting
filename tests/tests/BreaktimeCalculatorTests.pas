@@ -24,12 +24,14 @@ uses
 procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime;
 var
     actual, expected: Boolean;
+    timeService: TTimeService;
     breaktimeCalculator: TBreaktimeCalculator;
 begin
-//    expected := ??
-    breaktimeCalculator := TBreaktimeCalculator.Create;
+    timeService := TTimeService.Create;
+    breaktimeCalculator := TBreaktimeCalculator.Create(timeService);
     actual := breaktimeCalculator.IsBreak();
 
+    //    expected := ??
     Assert.AreEqual(expected, actual);
 end;
 
