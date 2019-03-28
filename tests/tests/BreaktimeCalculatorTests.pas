@@ -18,7 +18,7 @@ type
 implementation
 
 uses
-    TimeService,
+    TimeServiceImp,
     System.SysUtils;
 
 procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime;

@@ -94,7 +94,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="tests\BreaktimeCalculatorTests.pas"/>
-        <DCCReference Include="..\src\src\TimeService.pas"/>
+        <DCCReference Include="..\src\src\TimeServiceImp.pas"/>
         <DCCReference Include="..\src\src\BreaktimeCalculator.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>

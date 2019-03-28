@@ -8,9 +8,9 @@ uses
 type
     TBreaktimeCalculator = class
     private
-        _timeService: TTimeService;
+        _timeService: ITimeService;
     public
-        constructor Create(timeService: TTimeService);
+        constructor Create(timeService: ITimeService);
 
         function IsBreak: Boolean;
     end;
@@ -23,7 +23,7 @@ uses
 
 { TBreaksCalculator }
 
-constructor TBreaktimeCalculator.Create(timeService: TTimeService);
+constructor TBreaktimeCalculator.Create(timeService: ITimeService);
 begin
     _timeService := timeService;
 end;

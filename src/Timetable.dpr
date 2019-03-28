@@ -6,6 +6,7 @@ program Timetable;
 uses
   System.SysUtils,
   BreaktimeCalculator in 'src\BreaktimeCalculator.pas',
+  TimeServiceImp in 'src\TimeServiceImp.pas',
   TimeService in 'src\TimeService.pas';
 
 var

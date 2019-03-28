@@ -12,7 +12,7 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
   BreaktimeCalculatorTests in 'tests\BreaktimeCalculatorTests.pas',
-  TimeService in '..\src\src\TimeService.pas',
+  TimeServiceImp in '..\src\src\TimeServiceImp.pas',
   BreaktimeCalculator in '..\src\src\BreaktimeCalculator.pas';
 
 var
