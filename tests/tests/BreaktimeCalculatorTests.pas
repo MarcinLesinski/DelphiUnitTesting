@@ -18,17 +18,18 @@ type
 implementation
 
 uses
-    TimeServiceStub,
+    TimeService,
+    DSharp.Testing.Mock,
     System.SysUtils;
 
 procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime;
 var
     actual, expected: Boolean;
-    timeService: TTimeServiceStub;
+    timeService: Mock<ITimeService>;
     BreaktimeCalculator: TBreaktimeCalculator;
 begin
-    timeService := TTimeServiceStub.Create(StrToTime('05:45:23'));
     BreaktimeCalculator := TBreaktimeCalculator.Create(timeService);
+    timeService.Setup.WillReturn(StrToTime('05:45:13')).Once.WhenCallingWithAnyArguments.GetTime;
     actual := BreaktimeCalculator.IsBreak();
     expected := true;
     Assert.AreEqual(expected, actual);
