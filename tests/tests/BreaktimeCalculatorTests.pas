@@ -4,13 +4,23 @@ interface
 
 uses
     DUnitX.TestFramework,
-    BreaktimeCalculator;
+    BreaktimeCalculator,
+    TimeService,
+
+    DSharp.Testing.Mock;
 
 type
 
     [TestFixture]
     TBreaktimeCalculatorTests = class(TObject)
+    private
+        _timeService: Mock<ITimeService>;
+        _breaktimeCalculator: TBreaktimeCalculator;
     public
+        [Setup]
+        procedure Setup;
+        [TearDown]
+        procedure Teardown;
         [Test]
         procedure CalculateBreak_ReturnBreak_ForBreakTime;
     end;
@@ -18,19 +28,25 @@ type
 implementation
 
 uses
-    TimeService,
-    DSharp.Testing.Mock,
     System.SysUtils;
+
+procedure TBreaktimeCalculatorTests.Setup;
+begin
+    _breaktimeCalculator := TBreaktimeCalculator.Create(_timeService);
+end;
+
+procedure TBreaktimeCalculatorTests.Teardown;
+begin
+    _timeService.Free;
+    _breaktimeCalculator.DisposeOf;
+end;
 
 procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime;
 var
     actual, expected: Boolean;
-    timeService: Mock<ITimeService>;
-    BreaktimeCalculator: TBreaktimeCalculator;
 begin
-    BreaktimeCalculator := TBreaktimeCalculator.Create(timeService);
-    timeService.Setup.WillReturn(StrToTime('05:45:13')).Once.WhenCallingWithAnyArguments.GetTime;
-    actual := BreaktimeCalculator.IsBreak();
+    _timeService.Setup.WillReturn(StrToTime('05:45:13')).Once.WhenCallingWithAnyArguments.GetTime;
+    actual := _breaktimeCalculator.IsBreak();
     expected := true;
     Assert.AreEqual(expected, actual);
 end;
