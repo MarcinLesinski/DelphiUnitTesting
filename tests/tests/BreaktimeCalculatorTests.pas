@@ -21,8 +21,10 @@ type
         procedure Setup;
         [TearDown]
         procedure Teardown;
-        [Test]
-        procedure CalculateBreak_ReturnBreak_ForBreakTime;
+        [TestCase('Lower extreme value test.', '04:00:00')]
+        [TestCase('Upper extreme value test.', '07:00:00')]
+        [TestCase('Middle value test.', '05:45:13')]
+        procedure CalculateBreak_ReturnBreak_ForBreakTime(time: string);
     end;
 
 implementation
@@ -41,13 +43,13 @@ begin
     _breaktimeCalculator.DisposeOf;
 end;
 
-procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime;
+procedure TBreaktimeCalculatorTests.CalculateBreak_ReturnBreak_ForBreakTime(time: string);
 var
     actual, expected: Boolean;
 begin
-    _timeService.Setup.WillReturn(StrToTime('05:45:13')).Once.WhenCallingWithAnyArguments.GetTime;
+    _timeService.Setup.WillReturn(StrToTime(time)).Once.WhenCallingWithAnyArguments.GetTime;
     actual := _breaktimeCalculator.IsBreak();
-    expected := true;
+    expected := false;
     Assert.AreEqual(expected, actual);
 end;
 
